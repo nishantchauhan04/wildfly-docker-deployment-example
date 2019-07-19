@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose --file docker-compose-app_server.yml convert
+    kompose.version: 1.7.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: app-server
+  name: app-server
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: app-server
+    spec:
+      containers:
+      - command:
+        - /b2bua/entry-point.sh
+        image: richab123/app_server:0.0.1
+        name: app-server
+        ports:
+        - containerPort: 2727
+        - containerPort: 5080
+        - containerPort: 5081
+        - containerPort: 5082
+        - containerPort: 5083
+        - containerPort: 5084
+        - containerPort: 9090
+        - containerPort: 9990
+        resources: {}
+      restartPolicy: Always
+status: {}
