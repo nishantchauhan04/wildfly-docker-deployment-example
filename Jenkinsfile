@@ -35,11 +35,6 @@ spec:
     command:
     - cat
     tty: true
-    volumeMounts:
-     - name: task-pv-storage
-       hostPath: '/var/run/docker.sock'
-     - name: task-ab-storage
-       mountPath: '/var/run/docker.sock'
 """
 }
   }
