@@ -53,9 +53,7 @@ spec:
     stage('Build and push image with Container Builder') {
       steps {
         container('dind') {
-          sh "systemctl start docker"
           sh "docker version"
-          sh "systemctl start docker"
           sh "docker build -t nishantchauhan/testpipeline:${env.BUILD_NUMBER} ."
           sh "sudo docker push nishantchauhan/testpipeline:${env.BUILD_NUMBER}"
         }
