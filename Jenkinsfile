@@ -26,9 +26,7 @@ spec:
     - cat
     tty: true
   - name: dind
-    image: gitlab/dind
-    securityContext:
-      privileged: true
+    image: docker:18.02
     command:
     - cat
     tty: true
@@ -51,12 +49,11 @@ spec:
       }
     }
     stage('Build and push image with Container Builder') {
-    agent {
-                    docker {image 'node:8'}
-                }
-                steps {
-                    sh "npm install"
-                }
+    steps {
+        container('dind') {
+          sh "docker build -t nishantchauhan/hcl-test:${commitId} ."
+        }
+      }
     }
     stage('Deploy Canary') {
       steps {
