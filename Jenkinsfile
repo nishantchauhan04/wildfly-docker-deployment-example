@@ -25,6 +25,11 @@ spec:
     command:
     - cat
     tty: true
+  - name: did
+    image: gitlab/dind
+    command:
+    - cat
+    tty: true
   - name: kubectl
     image: gcr.io/cloud-builders/kubectl
     command:
@@ -45,8 +50,9 @@ spec:
     }
     stage('Build and push image with Container Builder') {
       steps {
-        script {
-          docker.build registry + ":$BUILD_NUMBER"
+        container('dind') {
+          sh "docker build -t nishantchauhan/testpipeline:${env.BUILD_NUMBER} ."
+          sh "sudo docker push nishantchauhan/testpipeline:${env.BUILD_NUMBER}"
         }
       }
     }
