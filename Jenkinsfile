@@ -51,13 +51,12 @@ spec:
       }
     }
     stage('Build and push image with Container Builder') {
-      steps {
-        container('dind') {
-          sh "docker version"
-          sh "docker build -t nishantchauhan/testpipeline:${env.BUILD_NUMBER} ."
-          sh "sudo docker push nishantchauhan/testpipeline:${env.BUILD_NUMBER}"
-        }
-      }
+    agent {
+                    docker {image 'node:8'}
+                }
+                steps {
+                    sh "npm install"
+                }
     }
     stage('Deploy Canary') {
       steps {
