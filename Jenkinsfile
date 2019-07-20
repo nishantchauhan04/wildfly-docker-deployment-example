@@ -51,7 +51,6 @@ spec:
     stage('Build and push image with Container Builder') {
       steps {
         container('dind') {
-          sh "apt-get status"
           sh "systemctl start docker"
           sh "docker version"
           sh "systemctl start docker"
