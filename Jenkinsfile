@@ -2,6 +2,10 @@ def project = 'ngv-poc'
 def  appName = 'node'
 
 pipeline {
+  environment {
+    registry = "nishantchauhan/testpipeline"
+    registryCredential = 'dockerhub'
+  }
   agent {
     kubernetes {
       label 'sample-app'
@@ -41,8 +45,8 @@ spec:
     }
     stage('Build and push image with Container Builder') {
       steps {
-        container('gcloud') {
-          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t ${imageTag} ."
+        script {
+          docker.build registry + ":$BUILD_NUMBER"
         }
       }
     }
