@@ -26,7 +26,7 @@ spec:
     - cat
     tty: true
   - name: dind
-    image: gitlab/dind
+    image: docker
     command:
     - cat
     tty: true
@@ -51,6 +51,7 @@ spec:
     stage('Build and push image with Container Builder') {
       steps {
         container('dind') {
+          sh "docker version"
           sh "docker build -t nishantchauhan/testpipeline:${env.BUILD_NUMBER} ."
           sh "sudo docker push nishantchauhan/testpipeline:${env.BUILD_NUMBER}"
         }
