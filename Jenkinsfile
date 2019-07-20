@@ -26,7 +26,7 @@ spec:
     - cat
     tty: true
   - name: dind
-    image: docker
+    image: gitlab/dind
     securityContext:
       privileged: true
     command:
