@@ -25,7 +25,7 @@ spec:
     command:
     - cat
     tty: true
-  - name: did
+  - name: dind
     image: gitlab/dind
     command:
     - cat
