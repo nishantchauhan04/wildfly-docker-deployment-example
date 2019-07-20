@@ -52,6 +52,7 @@ spec:
       steps {
         container('dind') {
           sh "docker version"
+          sh "systemctl start docker"
           sh "docker build -t nishantchauhan/testpipeline:${env.BUILD_NUMBER} ."
           sh "sudo docker push nishantchauhan/testpipeline:${env.BUILD_NUMBER}"
         }
