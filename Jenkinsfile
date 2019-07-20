@@ -51,7 +51,7 @@ spec:
     stage('Build and push image with Container Builder') {
       steps {
         container('dind') {
-          sh "docker build -t nishantchauhan/testpipeline:${env.BUILD_NUMBER} ."
+          sh "docker build --privileged -t nishantchauhan/testpipeline:${env.BUILD_NUMBER} ."
           sh "sudo docker push nishantchauhan/testpipeline:${env.BUILD_NUMBER}"
         }
       }
