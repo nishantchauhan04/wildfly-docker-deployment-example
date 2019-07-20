@@ -27,6 +27,8 @@ spec:
     tty: true
   - name: dind
     image: docker
+    securityContext:
+      privileged: true
     command:
     - cat
     tty: true
