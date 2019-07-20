@@ -51,7 +51,7 @@ spec:
     stage('Build and push image with Container Builder') {
     steps {
         container('dind') {
-          sh "docker build -t nishantchauhan/hcl-test:${commitId} ."
+          sh "docker build -t nishantchauhan/hcl-test:${env.BUILD_NUMBER} ."
         }
       }
     }
