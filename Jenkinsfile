@@ -55,7 +55,7 @@ spec:
         }
       }
     }
-    stage('Build and push image with Container Builder') {
+    stage('Build and Push Image') {
     steps {
         container('dind') {
           sh """
@@ -66,7 +66,7 @@ spec:
         }
       }
     }
-    stage('Deploy Canary') {
+    stage('Deploy to GKE') {
       steps {
         container('kubectl') {
           // Change deployed image in canary to the one we just built
