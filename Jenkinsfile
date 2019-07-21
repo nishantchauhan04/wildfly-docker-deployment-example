@@ -60,7 +60,7 @@ spec:
         container('dind') {
           sh """
             docker build -t ${imageTag} .
-            docker login -u ${env.udocker} -p ni441986
+            docker login -u ${env.udocker} -p ${env.pdocker}
             docker push ${imageTag}
           """  
         }
