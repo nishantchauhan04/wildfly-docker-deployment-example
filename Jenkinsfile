@@ -59,8 +59,8 @@ spec:
     steps {
         container('dind') {
           sh """
-            docker build -t nishantchauhan/hcl-test:${env.BUILD_NUMBER} .
-            docker push nishantchauhan/hcl-test:${env.BUILD_NUMBER}"
+            docker build -t ${imageTag} .
+            docker push ${imageTag}
           """  
         }
       }
