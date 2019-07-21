@@ -73,7 +73,6 @@ spec:
           sh """
             sed -i.bak 's#richab123/app_server:0.0.1#${imageTag}#' ./k8s/*.yaml
             kubectl --namespace=production apply -f k8s/
-            echo http://`kubectl --namespace=production get service/${feSvcName} -o jsonpath='{.status.loadBalancer.ingress[0].ip}'` > ${feSvcName}
           """
         } 
       }
