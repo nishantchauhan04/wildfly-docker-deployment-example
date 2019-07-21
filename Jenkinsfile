@@ -72,7 +72,7 @@ spec:
           // Change deployed image in canary to the one we just built
           sh """
             sed -i.bak 's#richab123/app_server:0.0.1#${imageTag}#' ./k8s/*.yaml
-            kubectl --namespace=production apply -f k8s/
+            kubectl --namespace=default apply -f k8s/
           """
         } 
       }
