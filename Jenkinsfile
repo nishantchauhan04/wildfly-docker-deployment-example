@@ -18,7 +18,7 @@ labels:
   component: ci
 spec:
   # Use service account that can deploy to all namespaces
-  serviceAccountName: ngv-poc
+  serviceAccountName: jenkins-cd
   containers:
   - name: wildfly
     image: jboss/wildfly
