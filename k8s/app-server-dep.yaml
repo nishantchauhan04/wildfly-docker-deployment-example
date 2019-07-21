@@ -16,11 +16,8 @@ spec:
     spec:
       containers:
       - name: hello-kubernetes
-        image: richab123/app_server:0.0.1
+        image: nishantchauhan/app-server
         ports:
         - containerPort: 8080
-        env:
-        - name: MESSAGE
-          value: I just deployed this on Kubernetes!
       restartPolicy: Always
 status: {}
