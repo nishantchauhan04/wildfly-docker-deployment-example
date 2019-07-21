@@ -26,15 +26,21 @@ spec:
     - cat
     tty: true
   - name: dind
-    image: docker:18.02
-    command:
-    - cat
+    image: docker:1.11
+    command: ['cat']
     tty: true
+    volumeMounts:
+    - name: dockersock
+      mountPath: /var/run/docker.sock
   - name: kubectl
     image: gcr.io/cloud-builders/kubectl
     command:
     - cat
     tty: true
+  volumes:
+  - name: dockersock
+    hostPath:
+      path: /var/run/docker.sock
 """
 }
   }
