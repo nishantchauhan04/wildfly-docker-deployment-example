@@ -1,5 +1,6 @@
-def project = 'ngv-poc'
-def  appName = 'node'
+def project = 'nishantchauhan'
+def appName = 'ngv-poc-test'
+def imageTag = "${project}/${appName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
 
 pipeline {
   environment {
@@ -69,7 +70,7 @@ spec:
         container('kubectl') {
           // Change deployed image in canary to the one we just built
           sh """
-            sed -i.bak 's#gcr.io/cloud-solutions-images/gceme:1.0.0#${imageTag}#' ./k8s/*.yaml
+            sed -i.bak 's#richab123/app_server:0.0.1#${imageTag}#' ./k8s/*.yaml
             kubectl --namespace=production apply -f k8s/
             echo http://`kubectl --namespace=production get service/${feSvcName} -o jsonpath='{.status.loadBalancer.ingress[0].ip}'` > ${feSvcName}
           """
