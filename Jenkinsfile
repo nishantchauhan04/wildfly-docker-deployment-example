@@ -69,9 +69,8 @@ spec:
         container('kubectl') {
           // Change deployed image in canary to the one we just built
           sh """
-            sed -i.bak 's#gcr.io/cloud-solutions-images/gceme:1.0.0#${imageTag}#' ./k8s/canary/*.yaml
-            kubectl --namespace=production apply -f k8s/services/
-            kubectl --namespace=production apply -f k8s/canary/
+            sed -i.bak 's#gcr.io/cloud-solutions-images/gceme:1.0.0#${imageTag}#' ./k8s/*.yaml
+            kubectl --namespace=production apply -f k8s/
             echo http://`kubectl --namespace=production get service/${feSvcName} -o jsonpath='{.status.loadBalancer.ingress[0].ip}'` > ${feSvcName}
           """
         } 
